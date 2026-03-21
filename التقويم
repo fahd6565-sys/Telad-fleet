@@ -1,0 +1,8 @@
+npm install @fullcalendar/react @fullcalendar/daygrid
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+
+<FullCalendar
+  plugins={[dayGridPlugin]}
+  events="http://localhost:5000/api/events"
+/>
