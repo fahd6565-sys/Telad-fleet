@@ -1,0 +1,12 @@
+async function createDecision() {
+
+  await fetch("http://localhost:5000/api/decisions", {
+    method: "POST",
+    body: JSON.stringify({
+      type: "MAINTENANCE",
+      decision: "صيانة مركبة",
+      source: "AI"
+    }),
+    headers: {"Content-Type": "application/json"}
+  });
+}
