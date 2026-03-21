@@ -1,0 +1,12 @@
+# قاعدة البيانات
+mysql -u root -p < database/schema.sql
+
+# تشغيل backend
+cd backend
+npm install
+node server.js
+
+# تشغيل frontend
+cd frontend
+npm install
+npm run dev
