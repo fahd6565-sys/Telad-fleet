@@ -33,3 +33,10 @@ TELAD هو نظام ذكي لإدارة:
 	•	💰 النظام المالي (فواتير + عهد + تصفية)
 	•	📊 التقارير (PDF + طباعة)
 	•	🤖 الذكاء الاصطناعي (تحليل + تنبؤ)
+telad-system/
+│
+├── frontend/        (Next.js - Vercel)
+├── backend/         (Node.js - Render)
+├── desktop/         (Electron EXE)
+├── database/
+├── docs/
