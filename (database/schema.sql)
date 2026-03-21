@@ -1,0 +1,48 @@
+CREATE DATABASE fleet;
+USE fleet;
+
+-- المركبات
+CREATE TABLE vehicles (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  plate VARCHAR(50),
+  status VARCHAR(20),
+  last_service DATE
+);
+
+-- الموظفين
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  role VARCHAR(50),
+  city_id INT
+);
+
+-- الأحداث (التقويم)
+CREATE TABLE events (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255),
+  type VARCHAR(50),
+  start_date DATETIME,
+  vehicle_id INT,
+  user_id INT
+);
+
+-- قرارات AI
+CREATE TABLE decisions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  type VARCHAR(50),
+  decision TEXT,
+  reason TEXT,
+  source VARCHAR(20),
+  status VARCHAR(20),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- تنبيهات AI
+CREATE TABLE ai_alerts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  type VARCHAR(50),
+  message TEXT,
+  severity VARCHAR(20),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
