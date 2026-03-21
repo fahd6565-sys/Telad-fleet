@@ -1,0 +1,73 @@
+import express from "express";
+import mysql from "mysql2";
+import cors from "cors";
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "fleet"
+});
+
+db.connect(err => {
+  if (err) throw err;
+  console.log("✅ DB Connected");
+});
+
+
+// 🧠 AI Monitoring
+setInterval(async () => {
+
+  const [vehicles] = await db.promise().query("SELECT * FROM vehicles");
+
+  vehicles.forEach(v => {
+    if (!v.last_service) return;
+
+    const diff = (new Date() - new Date(v.last_service)) / (1000*60*60*24);
+
+    if (diff > 30) {
+      db.query(`
+        INSERT INTO ai_alerts (type, message, severity)
+        VALUES (?, ?, ?)`,
+        ["MAINTENANCE", `🚗 مركبة ${v.plate} تحتاج صيانة`, "HIGH"]
+      );
+    }
+  });
+
+}, 10000);
+
+
+// 📊 Dashboard
+app.get("/api/dashboard", async (req, res) => {
+
+  const [vehicles] = await db.promise().query("SELECT COUNT(*) as total FROM vehicles");
+  const [users] = await db.promise().query("SELECT COUNT(*) as total FROM users");
+  const [alerts] = await db.promise().query("SELECT COUNT(*) as total FROM ai_alerts");
+
+  res.json({
+    vehicles: vehicles[0].total,
+    users: users[0].total,
+    alerts: alerts[0].total
+  });
+});
+
+
+// 📅 Events
+app.get("/api/events", async (req, res) => {
+  const [rows] = await db.promise().query("SELECT * FROM events");
+  res.json(rows);
+});
+
+
+// 🧠 Decisions
+app.get("/api/decisions", async (req, res) => {
+  const [rows] = await db.promise().query("SELECT * FROM decisions");
+  res.json(rows);
+});
+
+
+app.listen(5000, () => console.log("🚀 Backend Running"));
