@@ -1,42 +1,17 @@
+# 🚀 Telad Fleet System
 
-⸻
+## التشغيل
 
-:::writing{variant=“standard” id=“90821”}
+### Backend
+cd backend
+npm install
+node server.js
 
-🚀 TELAD Smart AI Fleet System
+### Frontend
+cd frontend
+npm install
+npm run dev
 
-نظام متكامل لإدارة الأسطول باستخدام الذكاء الاصطناعي
-مصمم ليعمل كـ نظام شركات عالمي (Enterprise SaaS Platform)
-
-⸻
-
-🌐 الروابط
-
-🔗 الموقع:
-https://telad-system.vercel.app
-
-🔗 API:
-https://telad-api.onrender.com
-
-🔗 GitHub:
-https://github.com/fahd6565-sys/nextjs-boilerplate
-
-⸻
-
-🧠 نظرة عامة
-
-TELAD هو نظام ذكي لإدارة:
-	•	🚚 المركبات
-	•	🛰 المشاريع والمدن
-	•	🔧 الصيانة
-	•	🚨 الحوادث والمخالفات
-	•	💰 النظام المالي (فواتير + عهد + تصفية)
-	•	📊 التقارير (PDF + طباعة)
-	•	🤖 الذكاء الاصطناعي (تحليل + تنبؤ)
-telad-system/
-│
-├── frontend/        (Next.js - Vercel)
-├── backend/         (Node.js - Render)
-├── desktop/         (Electron EXE)
-├── database/
-├── docs/
+## قاعدة البيانات
+استورد:
+database/schema.sql
